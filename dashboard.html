@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Social Media Trends{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="mb-4">Dashboard</h1>
+    
+    <!-- Statistics Cards -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="stat-card bg-primary text-white">
+                <h3>Total Posts</h3>
+                <h2>{{ total_posts }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card bg-success text-white">
+                <h3>Average Views</h3>
+                <h2>{{ "%.2f"|format(avg_views) }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card bg-info text-white">
+                <h3>Average Likes</h3>
+                <h2>{{ "%.2f"|format(avg_likes) }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Platform Distribution -->
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Platform Distribution</h4>
+                </div>
+                <div class="card-body">
+                    <div id="platformChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Engagement Level Distribution</h4>
+                </div>
+                <div class="card-body">
+                    <div id="engagementChart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Platform Distribution Chart
+    var platformData = {
+        labels: {{ platform_dist.index.tolist()|tojson }},
+        values: {{ platform_dist.values.tolist()|tojson }},
+        type: 'pie'
+    };
+    
+    var platformLayout = {
+        title: 'Posts by Platform'
+    };
+    
+    Plotly.newPlot('platformChart', [platformData], platformLayout);
+    
+    // Engagement Level Distribution Chart
+    var engagementData = {
+        labels: {{ engagement_dist.index.tolist()|tojson }},
+        values: {{ engagement_dist.values.tolist()|tojson }},
+        type: 'pie'
+    };
+    
+    var engagementLayout = {
+        title: 'Engagement Level Distribution'
+    };
+    
+    Plotly.newPlot('engagementChart', [engagementData], engagementLayout);
+</script>
+{% endblock %} 

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Predict Engagement - Social Media Trends{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="mb-4">Predict Engagement</h1>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Enter Post Details</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('predict') }}">
+                        <div class="mb-3">
+                            <label for="platform" class="form-label">Platform</label>
+                            <select class="form-select" id="platform" name="platform" required>
+                                <option value="">Select Platform</option>
+                                <option value="TikTok">TikTok</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="Twitter">Twitter</option>
+                                <option value="YouTube">YouTube</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="content_type" class="form-label">Content Type</label>
+                            <select class="form-select" id="content_type" name="content_type" required>
+                                <option value="">Select Content Type</option>
+                                <option value="Video">Video</option>
+                                <option value="Shorts">Shorts</option>
+                                <option value="Post">Post</option>
+                                <option value="Reel">Reel</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="hashtag" class="form-label">Hashtag</label>
+                            <select class="form-select" id="hashtag" name="hashtag" required>
+                                <option value="">Select Hashtag</option>
+                                <option value="#Challenge">#Challenge</option>
+                                <option value="#Education">#Education</option>
+                                <option value="#Dance">#Dance</option>
+                                <option value="#Music">#Music</option>
+                                <option value="#Tech">#Tech</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="region" class="form-label">Region</label>
+                            <select class="form-select" id="region" name="region" required>
+                                <option value="">Select Region</option>
+                                <option value="UK">UK</option>
+                                <option value="India">India</option>
+                                <option value="Brazil">Brazil</option>
+                                <option value="Australia">Australia</option>
+                                <option value="USA">USA</option>
+                                <option value="Germany">Germany</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Predict Engagement</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Prediction Tips</h4>
+                </div>
+                <div class="card-body">
+                    <h5>How to get better engagement:</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Use trending hashtags relevant to your content</li>
+                        <li class="list-group-item">Post during peak engagement hours</li>
+                        <li class="list-group-item">Create high-quality, engaging content</li>
+                        <li class="list-group-item">Interact with your audience regularly</li>
+                        <li class="list-group-item">Use platform-specific features</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

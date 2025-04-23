@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics - Social Media Trends{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="mb-4">Analytics</h1>
+    
+    <!-- Platform Distribution -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Platform Distribution</h4>
+                </div>
+                <div class="card-body">
+                    {{ fig_platform|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Engagement Distribution -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Engagement Level Distribution</h4>
+                </div>
+                <div class="card-body">
+                    {{ fig_engagement|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Filters -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Filter Data</h4>
+                </div>
+                <div class="card-body">
+                    <form id="filterForm" class="row g-3">
+                        <div class="col-md-3">
+                            <label for="platform" class="form-label">Platform</label>
+                            <select class="form-select" id="platform" name="platform">
+                                <option value="">All Platforms</option>
+                                <option value="TikTok">TikTok</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="Twitter">Twitter</option>
+                                <option value="YouTube">YouTube</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="contentType" class="form-label">Content Type</label>
+                            <select class="form-select" id="contentType" name="contentType">
+                                <option value="">All Types</option>
+                                <option value="Video">Video</option>
+                                <option value="Shorts">Shorts</option>
+                                <option value="Post">Post</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="region" class="form-label">Region</label>
+                            <select class="form-select" id="region" name="region">
+                                <option value="">All Regions</option>
+                                <option value="UK">UK</option>
+                                <option value="India">India</option>
+                                <option value="Brazil">Brazil</option>
+                                <option value="Australia">Australia</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="engagement" class="form-label">Engagement Level</label>
+                            <select class="form-select" id="engagement" name="engagement">
+                                <option value="">All Levels</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">Apply Filters</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.getElementById('filterForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Add AJAX call to update charts based on filters
+        // This will be implemented in the next step
+    });
+</script>
+{% endblock %} 

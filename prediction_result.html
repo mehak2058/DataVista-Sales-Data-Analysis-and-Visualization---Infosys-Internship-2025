@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction Result - Social Media Trends{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="mb-4">Prediction Result</h1>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Engagement Prediction</h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-{{ 'success' if prediction == 'High' else 'warning' if prediction == 'Medium' else 'danger' }}">
+                        <h4 class="alert-heading">Predicted Engagement Level: {{ prediction }}</h4>
+                        <p>
+                            {% if prediction == 'High' %}
+                                Your post is likely to receive high engagement! Keep up the good work.
+                            {% elif prediction == 'Medium' %}
+                                Your post is expected to receive moderate engagement. Consider optimizing your content.
+                            {% else %}
+                                Your post might receive lower engagement. Try adjusting your strategy.
+                            {% endif %}
+                        </p>
+                    </div>
+                    
+                    <h5 class="mt-4">Recommendations:</h5>
+                    <ul class="list-group list-group-flush">
+                        {% if prediction == 'High' %}
+                            <li class="list-group-item">Continue using similar content strategies</li>
+                            <li class="list-group-item">Engage with your audience regularly</li>
+                            <li class="list-group-item">Maintain consistent posting schedule</li>
+                        {% elif prediction == 'Medium' %}
+                            <li class="list-group-item">Try different content formats</li>
+                            <li class="list-group-item">Experiment with new hashtags</li>
+                            <li class="list-group-item">Post during peak engagement hours</li>
+                        {% else %}
+                            <li class="list-group-item">Review your content strategy</li>
+                            <li class="list-group-item">Analyze competitor content</li>
+                            <li class="list-group-item">Consider platform-specific best practices</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Next Steps</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h5>Content Optimization Tips:</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Use high-quality visuals and videos</li>
+                            <li class="list-group-item">Write engaging captions</li>
+                            <li class="list-group-item">Include relevant hashtags</li>
+                            <li class="list-group-item">Add call-to-actions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5>Timing Recommendations:</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Post during peak hours (9 AM - 11 AM)</li>
+                            <li class="list-group-item">Consider time zone differences</li>
+                            <li class="list-group-item">Maintain consistent posting schedule</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="{{ url_for('predict') }}" class="btn btn-primary">Make Another Prediction</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
